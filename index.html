@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AI Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      .calculator {
+        background: #0b1220;
+        padding: 25px;
+        border-radius: 20px;
+        width: 300px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      }
+
+      .screen {
+        background: #020617;
+        color: #38bdf8;
+        font-size: 26px;
+        padding: 15px;
+        border-radius: 12px;
+        text-align: right;
+        margin-bottom: 15px;
+        overflow-x: auto;
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+
+      button {
+        height: 55px;
+        border: none;
+        border-radius: 14px;
+        font-size: 18px;
+        cursor: pointer;
+        background: #111827;
+        color: #fff;
+        transition: 0.2s;
+      }
+
+      button:hover {
+        background: #1f2937;
+      }
+
+      .op {
+        background: #2563eb;
+      }
+
+      .op:hover {
+        background: #1d4ed8;
+      }
+
+      .eq {
+        background: #22c55e;
+        grid-column: span 2;
+      }
+
+      .eq:hover {
+        background: #16a34a;
+      }
+
+      .clear {
+        background: #ef4444;
+      }
+
+      .clear:hover {
+        background: #dc2626;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="calculator">
+      <div id="screen" class="screen">0</div>
+
+      <div class="buttons">
+        <button class="clear" onclick="clr()">C</button>
+        <button onclick="del()">⌫</button>
+        <button class="op" onclick="add('%')">%</button>
+        <button class="op" onclick="add('/')">÷</button>
+
+        <button onclick="add('7')">7</button>
+        <button onclick="add('8')">8</button>
+        <button onclick="add('9')">9</button>
+        <button class="op" onclick="add('*')">×</button>
+
+        <button onclick="add('4')">4</button>
+        <button onclick="add('5')">5</button>
+        <button onclick="add('6')">6</button>
+        <button class="op" onclick="add('-')">−</button>
+
+        <button onclick="add('1')">1</button>
+        <button onclick="add('2')">2</button>
+        <button onclick="add('3')">3</button>
+        <button class="op" onclick="add('+')">+</button>
+
+        <button onclick="add('0')">0</button>
+        <button onclick="add('.')">.</button>
+        <button class="eq" onclick="calc()">=</button>
+      </div>
+    </div>
+
+    <script>
+      let screen = document.getElementById("screen");
+
+      function add(val) {
+        if (screen.innerText === "0") screen.innerText = "";
+        screen.innerText += val;
+      }
+
+      function clr() {
+        screen.innerText = "0";
+      }
+
+      function del() {
+        screen.innerText = screen.innerText.slice(0, -1) || "0";
+      }
+
+      function calc() {
+        try {
+          screen.innerText = eval(screen.innerText);
+        } catch {
+          screen.innerText = "Error";
+        }
+      }
+    </script>
+  </body>
+</html>
